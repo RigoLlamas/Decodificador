@@ -5,8 +5,48 @@ InstruccionesR R[] = {
     {0x20, 0x0, "sub"},
     {0x00, 0x4, "xor"},
     {0x00, 0x6, "or"},
-    {0x00, 0x7, "and"}
+    {0x00, 0x7, "and"},
+    {0x00, 0x1, "sll"},
+    {0x00, 0x5, "srl"},
+    {0x20, 0x5, "sra"},
+    {0x00, 0x2, "slt"},
+    {0x00, 0x3, "slu"},
 };
 
-int sizeR = sizeof(R) /sizeof(InstruccionesR);
+int sizeR = sizeof(R)/sizeof(InstruccionesR);
+
+InstruccionesI I[] = {
+    {0x0, "addi"},
+    {0x7, "andi"},
+    {0x6, "ori"},
+};
+
+InstruccionesI Il[] = {
+    {0x0, "lb"},
+    {0x1, "lh"},
+    {0x2, "lw"},
+    {0x4, "lbu"},
+    {0x5, "lhu"},
+};
+
+
+int sizeI = sizeof(I)/sizeof(InstruccionesI);
+int sizeIl = sizeof(I)/sizeof(InstruccionesI);
+
+InstruccionesS S[] = {
+    {0x0, "sb"},
+    {0x1, "sh"},
+    {0x2, "sw"},
+};
+
+int sizeS = sizeof(S)/sizeof(InstruccionesS);
+
+InstruccionesB B[] = {
+    {0x0, "beq"},
+    {0x1, "bne"},
+    {0x4, "blt"},
+    {0x5, "bge"},
+};
+
+int sizeB = sizeof(B)/sizeof(InstruccionesB);
 

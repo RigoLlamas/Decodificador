@@ -10,6 +10,33 @@ typedef struct {
 } InstruccionesR;
 
 extern InstruccionesR R[];
-int sizeR;
+extern int sizeR;
+
+typedef struct {
+    uint8_t funct3;
+    char *instruccion;
+} InstruccionesI;
+
+extern InstruccionesI I[];
+extern InstruccionesI Il[];
+extern int sizeI;
+extern int sizeIl;
+
+typedef struct {
+    uint8_t funct3;
+    char *instruccion;
+} InstruccionesS;
+
+extern InstruccionesS S[];
+extern int sizeS;
+
+typedef struct {
+    uint8_t funct3;
+    const char *instruccion;
+} InstruccionesB;
+
+extern InstruccionesB B[];
+extern int sizeB;
+
 
 #endif

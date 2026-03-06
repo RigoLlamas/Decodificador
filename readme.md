@@ -123,8 +123,8 @@ Para ejecutar el proyecto se requiere:
 Para clonar el repositorio y compilarlo usaremos:
 
 ```bash
-git clone https://github.com/usuario/nombre-del-repositorio.git
-cd nombre-del-repositorio
+https://github.com/RigoLlamas/Decodificador.git
+cd Decodificador
 gcc main.c instrucciones.c ISA.c -o riscv
 ./decodificador
 ```

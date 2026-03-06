@@ -47,6 +47,8 @@ Decodificador
 ├── main.c
 ├── instrucciones.c
 ├── instrucciones.h
+├── ISA.c
+├── ISA.h
 ├── codigos.txt
 └── README.md
 ```
@@ -126,7 +128,7 @@ Para clonar el repositorio y compilarlo usaremos:
 https://github.com/RigoLlamas/Decodificador.git
 cd Decodificador
 gcc main.c instrucciones.c ISA.c -o riscv
-./decodificador
+./riscv
 ```
 Uso con Archivo de Instrucciones
 

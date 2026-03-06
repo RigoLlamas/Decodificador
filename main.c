@@ -7,11 +7,11 @@ int main()
 {
     char option = ' ';
     uint32_t codigo = 0;
-    printf("Ingrese una opcion:\n[M] Manual \n[A] Archivo \n:");
+    printf("Ingrese una opcion:\n[M] Manual \n[A] Archivo \n: ");
     scanf("%c", &option);
     switch (option)
     {
-    case 'M':
+    case 'M':           // Entrada manual para datos hexadecimal
     {
         printf("Ingresa instrucciOn en hexadecimal (Ejemplo: 002081B3): ");
         scanf("%x", &codigo);
@@ -20,7 +20,7 @@ int main()
     }
     break;
 
-    case 'A':
+    case 'A':           // Entrada automatica mediante el archivo codigos.txt con datos en binario
     {
         FILE *archivo = fopen("codigos.txt", "r");
         char instruccion[40] = " "; 

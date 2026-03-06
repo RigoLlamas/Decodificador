@@ -3,7 +3,7 @@
 #include "instrucciones.h"
 #include "ISA.h"
 
-void tipo_R(uint32_t codigo)
+void tipo_R(uint32_t codigo)                    // Decodificacion tipo R
 {
     printf("Forma R:\t");
     uint32_t rd = (codigo >> 7) & 0x1F;
@@ -24,7 +24,7 @@ void tipo_R(uint32_t codigo)
     printf("x%d x%d x%d x%d x%d\n", funct7, funct3, rd, rs1, rs2);
 }
 
-void tipo_I(uint32_t codigo, uint32_t opcode)
+void tipo_I(uint32_t codigo, uint32_t opcode)   // Decodificacion tipo I
 {
     printf("Forma I:\t");
     uint32_t rd = (codigo >> 7) & 0x1F;
@@ -59,7 +59,7 @@ void tipo_I(uint32_t codigo, uint32_t opcode)
     printf("%s x%d, x%d, %d\n", funct3, rd, rs1, imm);
 }
 
-void tipo_S(uint32_t codigo)
+void tipo_S(uint32_t codigo)                    // Decodificacion tipo S
 {
     printf("Forma S:\t");
     uint32_t rs1 = (codigo >> 15) & 0x1F;
@@ -73,7 +73,7 @@ void tipo_S(uint32_t codigo)
         imm |= 0xFFFFF000;
     }
 
-    for (int i = 0; i < sizeS; i++)
+    for (int i = 0; i < sizeS; ++i)
     {
         if (S[i].funct3 == funct3)
         {
@@ -85,25 +85,21 @@ void tipo_S(uint32_t codigo)
     printf("x%d x%d, %d(x%d)\n", funct3, rs2, imm, rs1);
 }
 
-void tipo_B(uint32_t codigo)
+void tipo_B(uint32_t codigo)                    // Decodificacion tipo B
 {
     printf("Forma B:\t");
     uint32_t rs1 = (codigo >> 15) & 0x1F;
     uint32_t rs2 = (codigo >> 20) & 0x1F;
     uint32_t funct3 = (codigo >> 12) & 0x7;
 
-    int32_t imm =
-        ((codigo >> 31) << 12) |
-        (((codigo >> 25) & 0x3F) << 5) |
-        (((codigo >> 8) & 0xF) << 1) |
-        (((codigo >> 7) & 0x1) << 11);
+    int32_t imm = ((codigo >> 31) << 12) | (((codigo >> 25) & 0x3F) << 5) | (((codigo >> 8) & 0xF) << 1) | (((codigo >> 7) & 0x1) << 11);
 
     if (imm & 0x1000)
     {
         imm |= 0xFFFFE000;
     }
 
-    for (int i = 0; i < sizeB; i++)
+    for (int i = 0; i < sizeB; ++i)
     {
         if (B[i].funct3 == funct3)
         {
@@ -115,25 +111,23 @@ void tipo_B(uint32_t codigo)
     printf("%s x%d, x%d, %d\n", funct3, rs1, rs2, imm);
 }
 
-void tipo_U(uint32_t codigo)
+void tipo_U(uint32_t codigo, uint32_t opcode)   // Decodificacion tipo U
 {
     printf("Forma U:\t");
     uint32_t rd = (codigo >> 7) & 0x1F;
     int32_t imm = codigo & 0xFFFFF000;
 
-    uint32_t opcode = codigo & 0x7F;
-
     if (opcode == 0x37)
     {
         printf("lui x%d, %d\n", rd, imm);
     }
-    else if (opcode == 0x17)
+    else 
     {
         printf("auipc x%d, %d\n", rd, imm);
     }
 }
 
-void tipo_J(uint32_t codigo)
+void tipo_J(uint32_t codigo)                    // Decodificacion tipo J
 {
     printf("Forma J:\t");
     uint32_t rd = (codigo >> 7) & 0x1F;
@@ -149,7 +143,7 @@ void tipo_J(uint32_t codigo)
     printf("jal x%d, %d\n", rd, imm);
 }
 
-void decodificar(uint32_t codigo)
+void decodificar(uint32_t codigo)               // Controlador de tipos y decodificacion general
 {
     printf("\n");
     uint32_t opcode = codigo & 0x7F;
@@ -170,7 +164,7 @@ void decodificar(uint32_t codigo)
         tipo_B(codigo);
         break;
     case 0x17:
-        tipo_U(codigo);
+        tipo_U(codigo, opcode);
         break;
     case 0x6F:
         tipo_J(codigo);

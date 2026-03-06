@@ -1,4 +1,4 @@
-#ifndef INSTRUCCIONES_H
+#ifndef INSTRUCCIONES_H     //  Definicio de structuras para diccionarios
 #define INSTRUCCIONES_H
 
 #include <stdint.h>
@@ -32,7 +32,7 @@ extern int sizeS;
 
 typedef struct {
     uint8_t funct3;
-    const char *instruccion;
+    char *instruccion;
 } InstruccionesB;
 
 extern InstruccionesB B[];
